@@ -93,6 +93,15 @@
     <Content Include="Assets\Data\dbFordVinGeneric.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Assets\Data\SetHD.cj4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\Data\SetMB.cj4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Assets\Data\Test.cj4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -106,6 +115,7 @@
     <Compile Include="Tools\BLE\ILockScreen.cs" />
     <Compile Include="Tools\BLE\ILog.cs" />
     <Compile Include="Tools\BLE\SetupCJ4.cs" />
+    <Compile Include="Tools\BLE\Shell.cs" />
     <Compile Include="Tools\Developers\DeviceInfo.cs" />
     <Compile Include="Tools\Developers\Log.cs" />
     <Compile Include="Tools\FordKeyUp.cs" />
