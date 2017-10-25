@@ -90,18 +90,15 @@
     <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="Assets\Data\dbFordVinGeneric.db">
+    <Content Include="Assets\Data\SetHD.cj4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Assets\Data\SetHD.cj4">
+    <Content Include="Assets\Data\SetMB.cj4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\Data\SetMB.cj4">
+    </Content>
+    <Content Include="Assets\Data\Test.cj4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Assets\Data\Test.cj4">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
@@ -147,10 +144,6 @@
     <Compile Include="Views\Connection\DiscoverBleServer.xaml.cs">
       <DependentUpon>DiscoverBleServer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Connection\ConnectBleServer.xaml.cs">
-      <DependentUpon>ConnectBleServer.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Tools\Developers\RemoteShell.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -175,10 +168,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Connection\DiscoverBleServer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Connection\ConnectBleServer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

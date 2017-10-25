@@ -146,52 +146,43 @@ namespace Injectoclean.Tools.BLE
             command[command.Length - 1] = (byte)(command[0] + 1);
             return command;
         }
-        internal  static bool CopyPCToFlash(ComunicationManager comunication, String source, String path)
+        internal static bool CopyPCToFlash(ComunicationManager comunication, String source, String path)
         {
-            int offset = 512;
-            Byte[] request = buildSendCommand(Shell.OPEN_FILE, 512, new Byte[] { 0x00 });
-            Byte[] destinybytes = Encoding.ASCII.GetBytes(source + " ");
-            request[5] = 0;
-            Array.Copy(destinybytes, 0, request, 6, destinybytes.Length);
-            request[7 + destinybytes.Length] = 0x78;
-            request[3] = (Byte)(source.Length + 2);
-
-            if (!CheckResponse(comunication.GetLastResponse(request, 400, 1), Shell.OPEN_FILE))
-                return false;
+            int offset = 26;
+            byte[] filename = new byte[source.Length+2];
+            filename[0] = 0x00;
+            filename[filename.Length-1] = 0x00;
+            Array.Copy(Encoding.ASCII.GetBytes(source), 0, filename, 1, source.Length);
+            Byte[] request = buildSendCommand(Shell.OPEN_FILE, filename.Length, filename);
+           
+            Byte[] response = comunication.GetLastResponse(request, 3000, 1);
+            if (!CheckResponse(response, Shell.OPEN_FILE))
+              return false;
             //send file
-            request[0] = 0x77;
-            request[1] = Shell.WRITE_FILE;
-            request[2] = 0x00;
-            request[3] = 0x00;
-            request[4] = 0x00;
-            Byte[] buffer = File.ReadAllBytes(@path + source);
+
+            Byte[] buffer = File.ReadAllBytes(Directory.GetCurrentDirectory() + path + source);
             int frames = (buffer.Length / offset);
-            for (int i = 0; i < (frames + 1); i++)
+            for (int i = 0; i <=frames ; i++)
             {
-                if (i == frames - 1)
-                    Array.Copy(buffer, i * offset, request, 6, buffer.Length - (frames * offset));
+                //if ((frames % 50) == 0)
+                //    ComunicationManager.PutTaskDelay(1000);
+                if (i == frames)
+                    request = buildSendCommand(Shell.WRITE_FILE, buffer.Length - (frames * offset), buffer.Skip(i * offset).Take(buffer.Length - (frames * offset)).ToArray());
                 else
-                    Array.Copy(buffer, i * offset, request, 6, offset);
-                request[2] = (Byte)(offset >> 8);
-                request[3] = (Byte)(offset);
-                request[offset + 5] = 0x78;
-                if (!CheckResponse(comunication.GetLastResponse(request, 400, 1), Shell.WRITE_FILE))
+                    request = buildSendCommand(Shell.WRITE_FILE, offset, buffer.Skip(i * offset).Take(offset).ToArray());
+                response = comunication.GetLastResponse(request, 300, 1);
+                if (!CheckResponse(response, Shell.WRITE_FILE))
                     return false;
+
             }
             //file close
-            request[0] = 0x77;
-            request[1] = Shell.CLOSE_FILE;
-            request[2] = 0x00;
-            request[3] = 0x00;
-            request[4] = 0x00;
-            request[5] = 0x78;
-            if (!CheckResponse(comunication.GetLastResponse(request, 400, 1), Shell.WRITE_FILE))
+            request = buildSendCommand(Shell.CLOSE_FILE, 0,null);
+            if (!CheckResponse(comunication.GetLastResponse(request, 400, 1), Shell.CLOSE_FILE))
                 return false;
             return true;
         }
         internal  static bool CheckResponse(Byte[] Response, Byte command)
         {
-
             if (Response != null)
             {
                 if (Response[0] == 0x57 &&

@@ -74,23 +74,23 @@ namespace Injectoclean.Tools.BLE
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Copying SetHd.cj4");
-            if (!Shell.CopyPCToFlash(comunication, "SetHd.cj4", "\\Assets\\Data\\"))
+                dialog.setTitle("Copying SetHd.CJ4");
+            if (!Shell.CopyPCToFlash(comunication, "SetHd.CJ4", "\\Assets\\Data\\"))
             {
                 if (dialog != null)
                     dialog.SetwithButton("could'n copy program", "Please contact support", "Ok");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Copying SetMB.cj4");
-            if (!Shell.CopyPCToFlash(comunication, "SetMB.cj4", "\\Assets\\Data\\"))
+                dialog.setTitle("Copying SetMB.CJ4");
+            if (!Shell.CopyPCToFlash(comunication, "SetMB.CJ4", "\\Assets\\Data\\"))
             {
                 if (dialog != null)
                     dialog.SetwithButton("could'n copy program", "Please contact support", "Ok");
                 return;
             }
-            dialog.setTitle("Copying Test.cj4");
-            if (!Shell.CopyPCToFlash(comunication, "Test.cj4", "\\Assets\\Data\\"))
+            dialog.setTitle("Copying Test.CJ4");
+            if (!Shell.CopyPCToFlash(comunication, "Test.CJ4", "\\Assets\\Data\\"))
             {
                 if (dialog != null)
                     dialog.SetwithButton("could'n copy program", "Please contact support", "Ok");

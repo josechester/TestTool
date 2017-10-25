@@ -13,48 +13,47 @@ namespace Injectoclean.Views.Shell
     public sealed partial class RemoteControl : Page
     {
         private MainPage rootPage;
-        RemoteShell comunication;
+        
         public RemoteControl()
         {
             this.InitializeComponent();
             rootPage = MainPage.Current;
-            comunication = new RemoteShell(rootPage);
-       }
+            
+        }
 
-    private void up_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Up);
+        private void up_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Up);
+        }
+
+        private void left_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Left);
+        }
+
+        private void down_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Down);
+        }
+
+        private void right_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Right);
+        }
+
+        private void enter_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Enter);
+        }
+
+        private void reset_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Reset);
+        }
+
+        private void escape_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage.Current.Comunication.SendCommand(Key.Esc);
+        }
     }
-
-    private void left_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Left);
-    }
-
-    private void down_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Down);
-    }
-
-    private void right_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Right);
-    }
-
-    private void enter_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Enter);
-    }
-
-    private void reset_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Reset);
-    }
-
-    private void escape_Click(object sender, RoutedEventArgs e)
-    {
-        comunication.RemoteKey(Key.Esc);
-    }
-
-}
 }

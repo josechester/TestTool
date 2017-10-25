@@ -18,6 +18,7 @@ namespace Injectoclean.Tools.UserHelpers
         public void setTitle(string title)
         {
             dialog.Title = title;
+            dialog.Content = "";
             dialog.Content = ring;
 
         }
