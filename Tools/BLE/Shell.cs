@@ -148,7 +148,7 @@ namespace Injectoclean.Tools.BLE
         }
         internal static bool CopyPCToFlash(ComunicationManager comunication, String source, String path)
         {
-            int offset = 26;
+            int offset = 14;
             byte[] filename = new byte[source.Length+2];
             filename[0] = 0x00;
             filename[filename.Length-1] = 0x00;
@@ -170,7 +170,7 @@ namespace Injectoclean.Tools.BLE
                     request = buildSendCommand(Shell.WRITE_FILE, buffer.Length - (frames * offset), buffer.Skip(i * offset).Take(buffer.Length - (frames * offset)).ToArray());
                 else
                     request = buildSendCommand(Shell.WRITE_FILE, offset, buffer.Skip(i * offset).Take(offset).ToArray());
-                response = comunication.GetLastResponse(request, 300, 1);
+                response = comunication.GetLastResponse(request, 500, 1);
                 if (!CheckResponse(response, Shell.WRITE_FILE))
                     return false;
 

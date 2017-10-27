@@ -129,12 +129,12 @@ namespace Injectoclean.Tools.BLE
                 if (results.Status != DevicePairingResultStatus.Paired && results.Status != DevicePairingResultStatus.AlreadyPaired)
                 {
                     if (log != null)
-                        log.LogMessage("Paiting result: " + results.Status.ToString());
-                    dialog.SetwithButton("Device Connection failed", "Problem: " + results.Status.ToString(), "Ok");
+                        log.LogMessage("Pairing result: " + results.Status.ToString());
+                    dialog.SetwithButton("Device Connection failed", "Problem: " + results.Status.ToString() , "Ok");
                     DeviceInfo.Set(null);
                     Deviceinfo = null;
                     this.Clear();
-
+                    return;
                 }
             }
 
@@ -173,10 +173,9 @@ namespace Injectoclean.Tools.BLE
                 //GattReadResult result = await inmdiateAlert.characteristic.ReadValueAsync();
                 if (result.Status == GattCommunicationStatus.Success)
                 {
-                    dialog.set("Correct", "Device Connection success", 1500);
+                    await dialog.set("Correct", "Device Connection success", 1500);
                     //t.Wait();
-                    ComunicationManager.PutTaskDelay(1500);
-                    dialog.Close();
+                    //ComunicationManager.PutTaskDelay(1505);
                     DeviceInfo.SetandSetup(Deviceinfo);
                     this.Clear();
                 }
@@ -348,8 +347,11 @@ namespace Injectoclean.Tools.BLE
                 // Protect against race condition if the task runs after the app stopped the deviceWatcher.
                 if (sender == deviceWatcher)
                 {
-                    /* rootPage.NotifyUser($"{ResultCollection.Count} devices found. Enumeration completed.",
-                         NotifyType.StatusMessage);*/
+                    dialog.SetwithButton("Device not found ", "Please retry with a CJ4 S/N", "Ok");
+
+                    DeviceInfo.Set(null);
+                    Deviceinfo = null;
+                    this.Clear();
                 }
             });
         }

@@ -5,39 +5,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Unloaded="Page_Unloaded">
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12,10,12,12">
+    <Grid x:Name="ComboBoxFiles" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="12,10,12,12">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="179*"/>
         </Grid.RowDefinitions>
-        <StackPanel Margin="0,0,12,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="1884" RenderTransformOrigin="0.5,0.486">
-            <TextBlock Text="Description:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884"/>
-            <TextBlock Style="{StaticResource ScenarioDescriptionTextStyle}" Text="Discover GATT servers" Width="1884"/>
-            <TextBlock TextWrapping="Wrap" Width="1884">
-                Enumerate nearby Bluetooth Low Energy devices,
-                then select and pair a device, so that it can be used
-                in the next scenario.
-            </TextBlock>
-            <StackPanel Margin="5,25,1575,0" Orientation="Horizontal" Height="141" HorizontalAlignment="Stretch" Width="Auto" RenderTransformOrigin="0.489,0.443" Background="Black" FocusVisualSecondaryBrush="#99000000" VerticalAlignment="Stretch" MinHeight="0"/>
-            <StackPanel Margin="-300,-200,0,-50" Orientation="Horizontal" Height="141" HorizontalAlignment="Stretch" Width="666" RenderTransformOrigin="0.448,0.752" Background="Black" FocusVisualSecondaryBrush="#99000000" VerticalAlignment="Stretch" MinHeight="0" Padding="0">
-                <Viewbox Width="298" Height="121" Margin="0,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Right" UseLayoutRounding="True">
-                    <Viewbox.FocusVisualPrimaryBrush>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="Black" Offset="0"/>
-                            <GradientStop Color="White" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Viewbox.FocusVisualPrimaryBrush>
-                    <Viewbox.FocusVisualSecondaryBrush>
-                        <ImageBrush Stretch="Fill"/>
-                    </Viewbox.FocusVisualSecondaryBrush>
-                    <Grid Height="91" Width="279">
-                        <Grid Margin="0,0,-216,3">
-                            <TextBox x:Name="txt_id" Margin="10,0,282,0" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Serieal Number:"/>
-                            <Button x:Name="Bconect" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="241,54,142,0" Click="BConect_click"/>
-                        </Grid>
-                    </Grid>
-                </Viewbox>
-            </StackPanel>
+        <StackPanel Margin="19,22,-623,332" Width="1884" RenderTransformOrigin="0.5,0.486">
+            <TextBlock Text="Connection:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884"/>
+            <Grid Height="123">
+                <TextBox x:Name="txt_id_tester" Margin="10,0,1671,43" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Tester S/N:"/>
+                <Button x:Name="Bconect_tester" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="233,46,1539,43" Click="Bconect_tester_Click"/>
+                <TextBox x:Name="txt_id_device" Margin="456,0,1225,43" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Device to test S/N:"/>
+                <Button x:Name="Bconect_Device" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="707,46,1065,43" Click="Bconect_Device_Click"/>
+            </Grid>
         </StackPanel>
+        <StackPanel Height="133" Margin="10,210,-517,172" Width="1787">
+            <Grid Height="133">
+                <TextBlock Text="Test Type:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884" Margin="10,0,-107,90"/>
+                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="10,68,1678,31"/>
+                <Button x:Name="BRunTest" Content="Run Test" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="258,68,1417,31" RenderTransformOrigin="0.321,1" Click="BRunTest_Click"/>
+            </Grid>
+        </StackPanel>
+        <Grid Margin="0,378,0,-22" Width="1280" Height="342" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3">
+            <TextBox x:Name="shell" TextWrapping="Wrap" Text="" IsReadOnly="True" Margin="0,0,225,71" Height="215" Width="794" HorizontalAlignment="Right" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"/>
+        </Grid>
     </Grid>
 </Page>

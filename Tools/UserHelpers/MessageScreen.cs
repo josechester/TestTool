@@ -7,19 +7,18 @@ namespace Injectoclean.Tools.UserHelpers
     public class MessageScreen : ILockScreen
     {
         private ContentDialog dialog;
-        private ProgressRing ring;
-        private bool IsOpen = false;
         public void Close()
         {
             dialog.Hide();
-            IsOpen = false;
         }
 
         public void setTitle(string title)
         {
             dialog.Title = title;
-            dialog.Content = "";
+            ProgressRing ring =new ProgressRing();
+            ring.IsActive = true;
             dialog.Content = ring;
+            dialog.CloseButtonText = "";
 
         }
 
@@ -31,34 +30,28 @@ namespace Injectoclean.Tools.UserHelpers
 
         }
 
-        public /*async*/ void Show(string title)
+        public void Show(string title)
         {
-            if (IsOpen)
-                this.Close();
-            IsOpen = true;
-            dialog.Hide();
+            if(dialog!=null)
+                dialog.Hide();
+            dialog = new ContentDialog();
             dialog.Title = title;
-            /*await*/ dialog.ShowAsync();
+            ProgressRing ring = new ProgressRing();
+            ring.IsActive = true;
+            dialog.Content = ring;
+            dialog.ShowAsync();
         }
        
         public MessageScreen()
         {
-            dialog = new ContentDialog();
-            ring = new ProgressRing();
-            ring.IsActive = true;
-            dialog.Content = ring;
         }
 
-        async Task PutTaskDelay(int time)
+        public async Task set(string title, string content, int timeout)
         {
-            await Task.Delay(time);
-        }
-
-        public async void set(string title, string content, int timeout)
-        {
+            dialog.CloseButtonText = "";
             dialog.Title = title;
             dialog.Content = content;
-            await PutTaskDelay(timeout);
+            await Task.Delay(timeout);
             this.Close();
         }
     }

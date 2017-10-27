@@ -104,8 +104,8 @@ namespace Injectoclean.Tools.BLE
                     CryptographicBuffer.CreateFromByteArray(message));
                 if (!(result == GattCommunicationStatus.Success))
                     LogError($"Write failed: {result}");
-                    else
-                    LogNotification($"Write success: {result}");
+                   // else
+                    //LogNotification($"Write success: {result}");
             }
             catch (Exception ex) when ((uint)ex.HResult == 0x80650003 || (uint)ex.HResult == 0x80070005)
             {
@@ -122,7 +122,7 @@ namespace Injectoclean.Tools.BLE
                 if (result == GattCommunicationStatus.Success)
                 {
                     AddValueChangedHandler();
-                    LogNotification($"waiting results {result}");
+                   // LogNotification($"waiting results {result}");
                 }
                 else
                     LogError($"Write failed: {result}");
@@ -141,7 +141,7 @@ namespace Injectoclean.Tools.BLE
             {
                 
                 CryptographicBuffer.CopyToByteArray(args.CharacteristicValue, out returned);
-                LogNotification($"value:" + GetStringResponse(returned));
+               // LogNotification($"value:" + GetStringResponse(returned));
                 response.Add(returned);
             }
         }
