@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Threading.Tasks;
 using static Injectoclean.Tools.BLE.GattAttributes.InmediateAlert;
 
@@ -138,23 +137,22 @@ namespace Injectoclean.Tools.BLE
             }
             if (dialog != null)
                 dialog.setTitle("Copying " + program);
-            //if (!Shell.CopyPCToFlash(comunication, program, "\\Assets\\Data\\"))
-            //{
-            //    if (dialog != null)
-            //        dialog.SetwithButton("could'n copy program", "Please contact support", "Ok");
-            //    return;
-            //}
-            //i need the program and how it works
-            //if (!Shell.ExecuteFile(comunication, limit, program))
-            //{
-            //    if (dialog != null)
-            //        dialog.SetwithButton("could'n execute program " + program , "Please contact support", "Ok");
-            //}
-            //else
-            //{
-            //    if (dialog != null)
-                    await dialog.set("Sucess", "Program "+program+" is running", 1500);
-            //}
+            if (!Shell.CopyPCToFlash(comunication, program, "\\Assets\\Data\\"))
+            {
+                if (dialog != null)
+                    dialog.SetwithButton("could'n copy program", "Please contact support", "Ok");
+                return;
+            }
+            if (!Shell.ExecuteFile(comunication, limit, program))
+            {
+                if (dialog != null)
+                    dialog.SetwithButton("could'n execute program " + program, "Please contact support", "Ok");
+            }
+            else
+            {
+                if (dialog != null)
+                    await dialog.set("Sucess", "Program " + program + " is running", 1500);
+            }
         }
     }
 }

@@ -3,13 +3,13 @@
     class BLEContainer : IDeviceInfo
     {
         private BluetoothLEDeviceDisplay device;
-
+        public BluetoothLEDeviceDisplay Device => device;
         private ComunicationManager comunication;
         private ILog log;
         private ILockScreen lockscreen;
         private Discover discover;
         public ComunicationManager Comunication => comunication;
-       
+        public Discover Discover => discover;
         public BLEContainer(ILog log,ILockScreen lockscreen)
         {
             this.log = log;

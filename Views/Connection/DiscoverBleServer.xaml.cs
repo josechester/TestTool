@@ -1,6 +1,7 @@
 using Injectoclean.Tools.BLE;
 using System;
 using System.Linq;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using static Injectoclean.Tools.BLE.SetupCJ4;
@@ -12,28 +13,27 @@ namespace Injectoclean
     {
         private MainPage rootPage = MainPage.Current;
         private BLEContainer tester,Device;
-
+        private String IdMB, IdHD;
         public DiscoverBleServer()
         {
+            this.InitializeComponent();
             InitializeComponent();
             ComboBoxFile.Items.Add("HD");
             ComboBoxFile.Items.Add("MB");
             tester = new BLEContainer(rootPage.Log, rootPage.messageScreen);
             Device = new BLEContainer(rootPage.Log, rootPage.messageScreen);
-
+            ApplicationDataContainer AppSettings = ApplicationData.Current.LocalSettings;
+            if (!AppSettings.Values.ContainsKey("MB"))
+                AppSettings.Values.Add("MB", "35316");
+            IdMB = (String)AppSettings.Values["MB"];
+            if (!AppSettings.Values.ContainsKey("HD"))
+                AppSettings.Values.Add("HD", "33409");
+              IdHD= (String)AppSettings.Values["HD"];
+            BRunTest.IsEnabled = false;
         }
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
  
-        }
-
-        private void Bconect_tester_Click(object sender, RoutedEventArgs e)
-        {
-            rootPage.Log.LogMessageNotification("");
-            if (txt_id_tester.Text.Length == 5 && txt_id_tester.Text.Length < 7)
-                tester.connect(txt_id_tester.Text);
-            else
-                rootPage.NotifyUser("Error input a correct id on tester S/N", NotifyType.ErrorMessage);
         }
 
         private async void BRunTest_Click(object sender, RoutedEventArgs e)
@@ -49,28 +49,28 @@ namespace Injectoclean
                 rootPage.Log.LogMessageError("Please select a test to run");
                 return;
             }
-            String program;
-            if (ComboBoxFile.SelectedIndex == 1)
-                program = Programs.HD;
-            else
-                program = Programs.MB;
-
-            await SetupCJ4.SetupTester(tester.Comunication, program, rootPage.messageScreen);
+          //run on converted device
+            await SetupCJ4.SetupTest(Device.Comunication, Programs.Tester, rootPage.messageScreen);
+            //run TestD.CJ4 on tester and get responses
             //await SetupCJ4.SetupTest(Device.Comunication, Programs.Test, rootPage.messageScreen);
-            //getmessages();
+            getmessages();
         }
         private async void getmessages()
         {
             for (int i = 0; i < 100; i++)
             {
-                Byte[][] responses = tester.Comunication.GetResponses(100, 20);
-                for (int j = 0; j < responses.Length; j++)
-                    printonshell(responses[i].ToString());
+                Byte[][] responses = Device.Comunication.GetResponses(100, 20);
+                if (responses != null)
+                {
+                    for (int j = 0; j < responses.Length; j++)
+                        printonshell(responses[i].ToString());
+                }
             }
         }
 
         private void Bconect_Device_Click(object sender, RoutedEventArgs e)
         {
+            BRunTest.IsEnabled = false;
             rootPage.Log.LogMessageNotification("");
             if (txt_id_device.Text.Length == 5 && txt_id_device.Text.Length < 7)
                 Device.connect(txt_id_device.Text);
@@ -81,6 +81,54 @@ namespace Injectoclean
         {
             shell.Text += line + String.Format(Environment.NewLine);
         }
+
+        private void BconfigDevice_Click(object sender, RoutedEventArgs e)
+        {
+            rootPage.Log.LogMessageNotification("");
+            if (!Device.IsConnected())
+            {
+                rootPage.Log.LogMessageError("Please first connect the device");
+                return;
+            }
+            if (ComboBoxFile.SelectedIndex == -1)
+            {
+                rootPage.Log.LogMessageError("Please select a test to run");
+                return;
+            }
+            switch (ComboBoxFile.SelectedIndex)
+            {
+                case -1:
+                    rootPage.NotifyUser("Please select a correct test Type", NotifyType.ErrorMessage);
+                    break;
+                case 0:
+                    SetupCJ4.SetupTest(Device.Comunication, Programs.HD, rootPage.messageScreen);
+                    BRunTest.IsEnabled = true;
+                    break;
+                case 1:
+                    SetupCJ4.SetupTest(Device.Comunication, Programs.MB, rootPage.messageScreen);
+                    BRunTest.IsEnabled = true;
+                    break;
+            }
+            
+        }
+
+        private void BCheckConnection_Click(object sender, RoutedEventArgs e)
+        {
+            switch (ComboBoxFile.SelectedIndex)
+            {
+                case -1:
+                    rootPage.NotifyUser("Please select a correct test Type", NotifyType.ErrorMessage);
+                    break;
+                case 0:
+                    tester.connect(IdHD);
+                    break;
+                case 1:
+                    tester.connect(IdMB);
+                    break;
+            }
+            
+        }
+
         public byte[] CommandBuilder(String line)
         {
 

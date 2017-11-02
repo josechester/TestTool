@@ -14,21 +14,25 @@
         <StackPanel Margin="19,22,-623,332" Width="1884" RenderTransformOrigin="0.5,0.486">
             <TextBlock Text="Connection:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884"/>
             <Grid Height="123">
-                <TextBox x:Name="txt_id_tester" Margin="10,0,1671,43" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Tester S/N:"/>
-                <Button x:Name="Bconect_tester" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="233,46,1539,43" Click="Bconect_tester_Click"/>
-                <TextBox x:Name="txt_id_device" Margin="456,0,1225,43" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Device to test S/N:"/>
-                <Button x:Name="Bconect_Device" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="707,46,1065,43" Click="Bconect_Device_Click"/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="129*"/>
+                    <ColumnDefinition Width="76*"/>
+                    <ColumnDefinition Width="1679*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="txt_id_device" Margin="30,0,1651,32" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Device to test S/N:" Grid.ColumnSpan="3"/>
+                <Button x:Name="Bconect_Device" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="76,57,1491,32" Click="Bconect_Device_Click" Grid.Column="2"/>
+                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="293,31,1269,32" Grid.Column="2" Header="Config Type:"/>
             </Grid>
         </StackPanel>
-        <StackPanel Height="133" Margin="10,210,-517,172" Width="1787">
-            <Grid Height="133">
-                <TextBlock Text="Test Type:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884" Margin="10,0,-107,90"/>
-                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="10,68,1678,31"/>
-                <Button x:Name="BRunTest" Content="Run Test" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="258,68,1417,31" RenderTransformOrigin="0.321,1" Click="BRunTest_Click"/>
+        <StackPanel Margin="13,260,-529,-12" Grid.RowSpan="3">
+            <Grid Height="265">
+                <Button x:Name="BRunTest" Content="Run Test" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,196,1321,33" RenderTransformOrigin="0.321,1" Click="BRunTest_Click" Width="149" Height="36"/>
+                <Button x:Name="BCheckConnection" Content="Check Tester Conn." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,41,1321,188" RenderTransformOrigin="0.321,1" Click="BCheckConnection_Click" Width="149" Height="36"/>
+                <Button x:Name="BconfigDevice" Content="Config Device" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,117,1321,112" RenderTransformOrigin="0.321,1" Click="BconfigDevice_Click" Width="149" Height="36"/>
+            </Grid>
+            <Grid Margin="-7,0,499,0" Width="1280" Height="174" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox x:Name="shell" TextWrapping="Wrap" Text="" IsReadOnly="True" Margin="0,0,456,0" Height="165" Width="794" HorizontalAlignment="Right" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"/>
             </Grid>
         </StackPanel>
-        <Grid Margin="0,378,0,-22" Width="1280" Height="342" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3">
-            <TextBox x:Name="shell" TextWrapping="Wrap" Text="" IsReadOnly="True" Margin="0,0,225,71" Height="215" Width="794" HorizontalAlignment="Right" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"/>
-        </Grid>
     </Grid>
 </Page>

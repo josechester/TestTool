@@ -62,17 +62,7 @@ namespace Injectoclean
 
             if (s != null)
             {
-                if (s.Title == "Discover servers")
-                {
                     ScenarioFrame.Navigate(s.ClassType);
-                }
-                else
-                {
-                    ScenarioControl.SelectedIndex = 0;
-                    NotifyUser("Please First connect with a device to access the Scanner functions", NotifyType.StatusMessage);
-
-                }
-                   
                 if (Window.Current.Bounds.Width < 640)
                     Splitter.IsPaneOpen = false;
             }

@@ -3,6 +3,7 @@ using Injectoclean.Tools.UserHelpers;
 using System;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
+using Injectoclean.Views;
 
 namespace Injectoclean
 {
@@ -12,7 +13,8 @@ namespace Injectoclean
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="Discover servers", ClassType=typeof(DiscoverBleServer) }
+            new Scenario() { Title="Test", ClassType=typeof(DiscoverBleServer) },
+            new Scenario() { Title="Settings", ClassType=typeof(Config) }
          };
 
         public Log Log = new Log();

@@ -14,19 +14,18 @@ namespace Injectoclean.Tools.UserHelpers
 
         public void setTitle(string title)
         {
-            dialog.Title = title;
-            ProgressRing ring =new ProgressRing();
-            ring.IsActive = true;
-            dialog.Content = ring;
-            dialog.CloseButtonText = "";
-
+            this.Show(title);
         }
 
         public void SetwithButton(string title, string content, string CloseButtonName)
         {
+            if (dialog != null)
+                dialog.Hide();
+            dialog = new ContentDialog();
             dialog.Title = title;
             dialog.Content = content;
             dialog.CloseButtonText = CloseButtonName;
+            dialog.ShowAsync();
 
         }
 
@@ -48,9 +47,12 @@ namespace Injectoclean.Tools.UserHelpers
 
         public async Task set(string title, string content, int timeout)
         {
-            dialog.CloseButtonText = "";
+            if (dialog != null)
+                dialog.Hide();
+            dialog = new ContentDialog();
             dialog.Title = title;
             dialog.Content = content;
+            dialog.ShowAsync();
             await Task.Delay(timeout);
             this.Close();
         }

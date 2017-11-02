@@ -70,6 +70,7 @@ namespace Injectoclean.Tools.BLE
         }
         public void GetService(String id)
         {
+            dialog.Show("Finding Device ...");
             Clear();
             if (log != null)
                 log.LogMessageNotification("");
