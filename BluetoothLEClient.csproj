@@ -107,6 +107,9 @@
     <Content Include="Assets\Data\Test.cj4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Data\TestEq.cj4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="BluetoothLEClient_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>
@@ -224,6 +227,7 @@
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="System\Windows\" />
     <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>

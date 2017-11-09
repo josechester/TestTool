@@ -15,23 +15,65 @@
             <TextBlock Text="Connection:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884"/>
             <Grid Height="123">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="129*"/>
+                    <ColumnDefinition Width="55"/>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="74*"/>
                     <ColumnDefinition Width="76*"/>
                     <ColumnDefinition Width="1679*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="txt_id_device" Margin="30,0,1651,32" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Device to test S/N:" Grid.ColumnSpan="3"/>
-                <Button x:Name="Bconect_Device" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="76,57,1491,32" Click="Bconect_Device_Click" Grid.Column="2"/>
-                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="293,31,1269,32" Grid.Column="2" Header="Config Type:"/>
+                <TextBox x:Name="txt_id_device" Margin="30,0,1651,32" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Device to test S/N:" Grid.ColumnSpan="5"/>
+                <Button x:Name="Bconect_Device" Content="Conect" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="76,57,1491,32" Click="Bconect_Device_Click" Grid.Column="4"/>
+                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="293,31,1269,32" Grid.Column="4" Header="Config Type:"/>
             </Grid>
         </StackPanel>
         <StackPanel Margin="13,260,-529,-12" Grid.RowSpan="3">
-            <Grid Height="265">
+            <Grid Height="263">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
                 <Button x:Name="BRunTest" Content="Run Test" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,196,1321,33" RenderTransformOrigin="0.321,1" Click="BRunTest_Click" Width="149" Height="36"/>
-                <Button x:Name="BCheckConnection" Content="Check Tester Conn." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,41,1321,188" RenderTransformOrigin="0.321,1" Click="BCheckConnection_Click" Width="149" Height="36"/>
+                <Button x:Name="BCheckConnection" Content="Check Tester Conn." HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,41,1321,188" RenderTransformOrigin="0.5,0.5" Click="BCheckConnection_Click" Width="149" Height="36"/>
                 <Button x:Name="BconfigDevice" Content="Config Device" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="302,117,1321,112" RenderTransformOrigin="0.321,1" Click="BconfigDevice_Click" Width="149" Height="36"/>
             </Grid>
-            <Grid Margin="-7,0,499,0" Width="1280" Height="174" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBox x:Name="shell" TextWrapping="Wrap" Text="" IsReadOnly="True" Margin="0,0,456,0" Height="165" Width="794" HorizontalAlignment="Right" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"/>
+            <Grid Margin="-7,0,522,0" Width="1257" Height="185" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBox x:Name="shell" TextWrapping="Wrap" Text="" IsReadOnly="True" Margin="0,0,175,10" Height="165" Width="426" HorizontalAlignment="Right" VerticalAlignment="Bottom" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Right"/>
+                <Grid x:Name="MBview" HorizontalAlignment="Left" Height="175" Margin="31,10,0,0" VerticalAlignment="Top" Width="187">
+                    <Ellipse x:Name="MBP7" Fill="#FF5FFF30" HorizontalAlignment="Left" Height="26" Margin="116,37,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.407,-0.038"/>
+                    <Ellipse x:Name="MBP10" Fill="#FFFF0202" Height="26" Margin="116,63,44,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="-0.074,2.115"/>
+                    <Ellipse x:Name="MBP13" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,89,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="1.148,1.885"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="40,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="76">
+                        <Run Text="ISO Pin 10"/>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="40,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26">
+                        <Run Text="ISO Pin 13"/>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="26,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                        <Run Text="CJ4-R MB:"/>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="48,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="68">
+                        <Run Text="ISO Pin 7"/>
+                    </TextBlock>
+                    <Ellipse x:Name="MBm7" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,115,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="1.148,1.885"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="119">
+                        <Run Text="Mainboard Pin 7"/>
+                    </TextBlock>
+                    <Ellipse x:Name="MBCAN" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,141,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="1.148,1.885"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="0,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26">
+                        <Run Text="Mainboard CAN"/>
+                    </TextBlock>
+                </Grid>
+                <Grid x:Name="HDview" HorizontalAlignment="Left" Height="154" Margin="257,10,0,0" VerticalAlignment="Top" Width="187">
+                    <Ellipse x:Name="HDJ17" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,27,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.407,-0.038"/>
+                    <Ellipse x:Name="HDJ19" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,74,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="-0.074,2.115"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="26,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                        <Run Text="CJ4-R HD:"/>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" Margin="51,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="54" Text="J1939"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="51,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="60" Text="J1708"/>
+                </Grid>
             </Grid>
         </StackPanel>
     </Grid>

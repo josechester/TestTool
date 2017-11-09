@@ -10,7 +10,7 @@ namespace Injectoclean.Tools.BLE
         {
             public const String MB = "SetMB.CJ4";
             public const String HD = "SetHD.CJ4";
-            public const String Test = "TestD.CJ4";
+            public const String Test = "TestEq.CJ4";
             public const String Tester = "Test.CJ4";
             public const String Pass = "pass.CJ4";
             public const String nissan = "PN.CJ4";
