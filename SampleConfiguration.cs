@@ -9,13 +9,13 @@ namespace Injectoclean
 {
     public partial class MainPage : Page
     {
-        public const string FEATURE_NAME = "BLE";
+        public const string FEATURE_NAME = "MENU";
 
         List<Scenario> scenarios = new List<Scenario>
         {
-            new Scenario() { Title="Test", ClassType=typeof(DiscoverBleServer) },
-            new Scenario() { Title="Settings", ClassType=typeof(Config) }
-         };
+            new Scenario() { Title="Inicio", ClassType=typeof(DiscoverBleServer) },
+            new Scenario() { Title="Configuracion", ClassType=typeof(Config) }
+        };
 
         public Log Log = new Log();
         public MessageScreen messageScreen = new MessageScreen();

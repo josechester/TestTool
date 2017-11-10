@@ -75,18 +75,19 @@ namespace Injectoclean
             rootPage.Log.LogMessageNotification("");
             if (!tester.IsConnected() || !Device.IsConnected())
             {
-                rootPage.Log.LogMessageError("Please first connect to both devices");
+                rootPage.Log.LogMessageError("Porfavor primero conectese al dispocitivo y valide la conexion al tester");
                 return;
             }
             if (ComboBoxFile.SelectedIndex == -1)
             {
-                rootPage.Log.LogMessageError("Please select a test to run");
+                rootPage.Log.LogMessageError("Porfavor seleccione un tipo de configuracion");
                 return;
             }
             //run on converted device
             await SetupCJ4.SetupTest(Device.Comunication, Programs.Tester, rootPage.messageScreen);
             //run TestD.CJ4 on tester and get responses
             await SetupCJ4.SetupTest(tester.Comunication, Programs.Test, rootPage.messageScreen);
+            shell.Visibility = Visibility.Visible; 
             getmessages();
         }
         private async void getmessages()
@@ -136,7 +137,27 @@ namespace Injectoclean
         }
         void checkMB(Byte[] mess)
         {
-            
+            if (mess.Length < 5)
+                return;
+            switch (System.Text.Encoding.ASCII.GetString(mess).Substring(0, 5))
+            {
+                case "isop07":
+                    MBP7.Fill = green;
+                    break;
+                case "isop10":
+                    MBP10.Fill = green;
+                    break;
+                case "isop13":
+                    MBP13.Fill = green;
+                    break;
+                case "isopm7":
+                    MBm7.Fill = green;
+                    break;
+                case "isomc":
+                    MBCAN.Fill = green;
+                    break;
+            }
+            return;
         }
         private void Bconect_Device_Click(object sender, RoutedEventArgs e)
         {
@@ -145,7 +166,7 @@ namespace Injectoclean
             if (txt_id_device.Text.Length == 5 && txt_id_device.Text.Length < 7)
                 Device.connect(txt_id_device.Text);
             else
-                rootPage.NotifyUser("Error input a correct id on Device to test S/N", NotifyType.ErrorMessage);
+                rootPage.NotifyUser("Error ingrese un S/N valido", NotifyType.ErrorMessage);
         }
         private void printonshell(String line)
         {
@@ -157,18 +178,13 @@ namespace Injectoclean
             rootPage.Log.LogMessageNotification("");
             if (!Device.IsConnected())
             {
-                rootPage.Log.LogMessageError("Please first connect the device");
-                return;
-            }
-            if (ComboBoxFile.SelectedIndex == -1)
-            {
-                rootPage.Log.LogMessageError("Please select a test to run");
+                rootPage.Log.LogMessageError("Porfavor primero conectese al dispocitivo");
                 return;
             }
             switch (ComboBoxFile.SelectedIndex)
             {
                 case -1:
-                    rootPage.NotifyUser("Please select a correct test Type", NotifyType.ErrorMessage);
+                    rootPage.NotifyUser("Porfavor seleccione un tipo de configuracion", NotifyType.ErrorMessage);
                     break;
                 case 0:
                     SetupCJ4.SetupTest(Device.Comunication, Programs.HD, rootPage.messageScreen);
@@ -193,7 +209,7 @@ namespace Injectoclean
             switch (ComboBoxFile.SelectedIndex)
             {
                 case -1:
-                    rootPage.NotifyUser("Please select a correct test Type", NotifyType.ErrorMessage);
+                    rootPage.NotifyUser("Porfavor seleccione un tipo de configuracion", NotifyType.ErrorMessage);
                     break;
                 case 0:
                     tester.connect(IdHD);

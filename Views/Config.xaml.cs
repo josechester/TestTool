@@ -32,11 +32,11 @@ namespace Injectoclean.Views
         private void Bconf_Click(object sender, RoutedEventArgs e)
         {
             MainPage.Current.Log.LogMessageNotification("");
-            if (Bconf.Content.ToString() == "Edit")
+            if (Bconf.Content.ToString() == "Editar")
             {
                 txt_id_HD.IsEnabled = true;
                 txt_id_MB.IsEnabled = true;
-                Bconf.Content = "Save";
+                Bconf.Content = "Guardar";
             }
             else
             {
@@ -44,12 +44,12 @@ namespace Injectoclean.Views
 
                 if (txt_id_HD.Text.Length < 5 || txt_id_HD.Text.Length > 6)
                 {
-                    MainPage.Current.NotifyUser("Error input a correct HD tester S/N", NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser("Error ingrese un HD tester S/N valido", NotifyType.ErrorMessage);
                     return;
                 }
                 if (txt_id_MB.Text.Length < 5 || txt_id_MB.Text.Length > 6)
                 { 
-                    MainPage.Current.NotifyUser("Error input a correct MB tester S/N", NotifyType.ErrorMessage);
+                    MainPage.Current.NotifyUser("Error ingrese un MB tester S/N valido", NotifyType.ErrorMessage);
                     return;
                 }
                 ApplicationDataContainer AppSettings = ApplicationData.Current.LocalSettings;
@@ -58,7 +58,7 @@ namespace Injectoclean.Views
                 AppSettings.Values.Add("MB", txt_id_MB.Text);
                 txt_id_HD.IsEnabled = false;
                 txt_id_MB.IsEnabled = false;
-                Bconf.Content = "Edit";
+                Bconf.Content = "Editar";
             }
         }
     }
