@@ -8,16 +8,16 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Margin="31,32,-635,527" Width="1884" RenderTransformOrigin="0.5,0.486">
-            <TextBlock Text="Connection:" Style="{StaticResource SampleHeaderTextStyle}" Width="1884"/>
-            <Grid Height="123">
+        <StackPanel Margin="10" RenderTransformOrigin="0.5,0.486">
+            <TextBlock Text="Connection:" Style="{StaticResource SampleHeaderTextStyle}"/>
+            <Grid Height="239" HorizontalAlignment="Left" Width="953">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="205*"/>
                     <ColumnDefinition Width="1679*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="txt_id_MB" Margin="10,0,1671,43" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="MB Tester S/N::" Grid.ColumnSpan="2"/>
-                <TextBox x:Name="txt_id_HD" Margin="251,0,1225,43" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="HD Tester S/N:" Grid.Column="1"/>
-                <Button x:Name="Bconf" Content="Edit" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="655,46,912,43" Grid.Column="1" Click="Bconf_Click"/>
+                <TextBox x:Name="txt_id_MB" Margin="10,0,739,169" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="MB Tester S/N::" Grid.ColumnSpan="2" Height="60"/>
+                <TextBox x:Name="txt_id_HD" Margin="115,0,528,169" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="HD Tester S/N:" Grid.Column="1"/>
+                <Button x:Name="Bconf" Content="Edit" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="363,38,374,169" Grid.Column="1" Click="Bconf_Click" RenderTransformOrigin="0.5,0.49"/>
             </Grid>
         </StackPanel>
 
