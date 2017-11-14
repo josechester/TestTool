@@ -34,10 +34,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BRunTest" Content="Ejecutar prueba" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="159,182,843,45" RenderTransformOrigin="0.321,1" Click="BRunTest_Click" Height="36" Width="171"/>
+                <Button x:Name="BRunTest" Content="Ejecutar prueba" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="31,182,715,45" RenderTransformOrigin="0.321,1" Click="BRunTest_Click" Height="36" Width="171"/>
                 <Button x:Name="BCheckConnection" Content="Validar conexion tester" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,27,714,200" RenderTransformOrigin="0.5,0.5" Click="BCheckConnection_Click" Height="36"/>
-                <Button x:Name="BconfigDevice" Content="Configurar dispositivo" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="159,103,843,124" RenderTransformOrigin="0.321,1" Click="BconfigDevice_Click" Height="36" Width="171"/>
-                <Grid x:Name="MBview" HorizontalAlignment="Left" Height="175" Margin="400,47,0,0" VerticalAlignment="Top" Width="187">
+                <Button x:Name="BconfigDevice" Content="Configurar dispositivo" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="31,103,715,124" RenderTransformOrigin="0.321,1" Click="BconfigDevice_Click" Height="36" Width="171"/>
+                <Grid x:Name="MBview" HorizontalAlignment="Left" Height="175" Margin="318,47,0,0" VerticalAlignment="Top" Width="187">
                     <Ellipse x:Name="MBP7" Fill="#FF5FFF30" HorizontalAlignment="Left" Height="26" Margin="116,37,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.407,-0.038"/>
                     <Ellipse x:Name="MBP10" Fill="#FFFF0202" Height="26" Margin="116,63,44,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="-0.074,2.115"/>
                     <Ellipse x:Name="MBP13" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,89,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="1.148,1.885"/>
@@ -62,7 +62,7 @@
                         <Run Text="Mainboard CAN"/>
                     </TextBlock>
                 </Grid>
-                <Grid x:Name="HDview" HorizontalAlignment="Left" Height="154" Margin="607,47,0,0" VerticalAlignment="Top" Width="187">
+                <Grid x:Name="HDview" HorizontalAlignment="Left" Height="154" Margin="552,47,0,0" VerticalAlignment="Top" Width="187">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="37"/>
