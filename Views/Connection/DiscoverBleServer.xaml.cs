@@ -89,6 +89,7 @@ namespace Injectoclean
             await SetupCJ4.SetupTest(tester.Comunication, Programs.Test, rootPage.messageScreen);
             shell.Visibility = Visibility.Visible; 
             getmessages();
+            rootPage.messageScreen.set("Atencion:", "Porfavor mida el voltaje", 1000);
         }
         private async void getmessages()
         {
