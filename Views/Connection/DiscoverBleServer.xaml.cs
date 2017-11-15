@@ -19,7 +19,7 @@ namespace Injectoclean
         private BLEContainer tester, Device;
         private String IdMB, IdHD;
 
-        private void sethdcolor(SolidColorBrush brush) {
+        private void setmbcolor(SolidColorBrush brush) {
 
             MBP7.Fill = brush;
             MBP10.Fill = brush;
@@ -27,7 +27,7 @@ namespace Injectoclean
             MBP13.Fill = brush;
             MBCAN.Fill = brush;
         }
-        private void setmbcolor(SolidColorBrush brush)
+        private void sethdcolor(SolidColorBrush brush)
         {
             HDJ17.Fill = brush;
             HDJ19.Fill = brush;
@@ -63,6 +63,8 @@ namespace Injectoclean
                 AppSettings.Values.Add("HD", "33409");
             IdHD = (String)AppSettings.Values["HD"];
             reset();
+            //setmbcolor(green);
+            //sethdcolor(green);
 
         }
         private void Page_Unloaded(object sender, RoutedEventArgs e)
@@ -87,9 +89,10 @@ namespace Injectoclean
             await SetupCJ4.SetupTest(Device.Comunication, Programs.Tester, rootPage.messageScreen);
             //run TestD.CJ4 on tester and get responses
             await SetupCJ4.SetupTest(tester.Comunication, Programs.Test, rootPage.messageScreen);
-            shell.Visibility = Visibility.Visible; 
+            //shell.Visibility = Visibility.Visible; 
             getmessages();
-            rootPage.messageScreen.set("Atencion:", "Porfavor mida el voltaje", 1000);
+            //setmbcolor(green); //freeze
+            rootPage.messageScreen.set("Atencion:", "Porfavor mida el voltaje", 2000);
         }
         private async void getmessages()
         {
@@ -221,7 +224,6 @@ namespace Injectoclean
                     MBview.Visibility = Visibility.Visible;
                     break;
             }
-            
         }
        
         public byte[] CommandBuilder(String line)
