@@ -27,7 +27,7 @@
             </Grid>
         </StackPanel>
         <StackPanel Margin="61,270,22,10" Grid.RowSpan="3">
-            <Grid Height="263" RenderTransformOrigin="0.525,0.494">
+            <Grid Height="261" RenderTransformOrigin="0.525,0.494">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
