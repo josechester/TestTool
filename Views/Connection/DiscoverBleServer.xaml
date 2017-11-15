@@ -21,9 +21,9 @@
                     <ColumnDefinition Width="76*"/>
                     <ColumnDefinition Width="1679*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="txt_id_device" Margin="30,0,1651,32" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Dispositivo S/N:" Grid.ColumnSpan="5"/>
-                <Button x:Name="Bconect_Device" Content="Conectar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="76,57,1491,32" Click="Bconect_Device_Click" Grid.Column="4"/>
-                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="293,31,1229,32" Grid.Column="4" Header="Tipo dispositivo:"/>
+                <TextBox x:Name="txt_id_device" Margin="1,0,1551,34" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" InputScope="Number" Header="Dispositivo S/N:" Grid.ColumnSpan="2" Grid.Column="3"/>
+                <Button x:Name="Bconect_Device" Content="Conectar" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="34" Margin="176,55,1391,34" Click="Bconect_Device_Click" Grid.Column="4"/>
+                <ComboBox x:Name="ComboBoxFile" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" Margin="393,29,1129,34" Grid.Column="4" Header="Tipo dispositivo:"/>
             </Grid>
         </StackPanel>
         <StackPanel Margin="61,270,22,10" Grid.RowSpan="3">
@@ -34,10 +34,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="BRunTest" Content="Ejecutar prueba" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="65,178,937,49" RenderTransformOrigin="0.321,1" Click="BRunTest_Click" Height="36" Width="171"/>
-                <Button x:Name="BCheckConnection" Content="Validar conexion tester" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="65,23,937,204" RenderTransformOrigin="0.5,0.5" Click="BCheckConnection_Click" Height="36"/>
-                <Button x:Name="BconfigDevice" Content="Configurar dispositivo" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="65,99,937,128" RenderTransformOrigin="0.321,1" Click="BconfigDevice_Click" Height="36" Width="171"/>
-                <Grid x:Name="MBview" HorizontalAlignment="Left" Height="175" Margin="291,43,0,0" VerticalAlignment="Top" Width="187">
+                <Button x:Name="BRunTest" Content="Ejecutar prueba" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="115,174,887,53" RenderTransformOrigin="0.321,1" Click="BRunTest_Click" Height="36" Width="171"/>
+                <Button x:Name="BCheckConnection" Content="Validar conexion tester" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="115,19,887,208" RenderTransformOrigin="0.5,0.5" Click="BCheckConnection_Click" Height="36"/>
+                <Button x:Name="BconfigDevice" Content="Configurar dispositivo" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="115,95,887,132" RenderTransformOrigin="0.321,1" Click="BconfigDevice_Click" Height="36" Width="171"/>
+                <Grid x:Name="MBview" HorizontalAlignment="Left" Height="175" Margin="373,39,0,0" VerticalAlignment="Top" Width="187">
                     <Ellipse x:Name="MBP7" Fill="#FF5FFF30" HorizontalAlignment="Left" Height="26" Margin="116,37,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.407,-0.038"/>
                     <Ellipse x:Name="MBP10" Fill="#FFFF0202" Height="26" Margin="116,63,44,0" Stroke="Black" VerticalAlignment="Top" RenderTransformOrigin="-0.074,2.115"/>
                     <Ellipse x:Name="MBP13" Fill="#FFFF0202" HorizontalAlignment="Left" Height="26" Margin="116,89,0,0" Stroke="Black" VerticalAlignment="Top" Width="27" RenderTransformOrigin="1.148,1.885"/>
@@ -62,7 +62,7 @@
                         <Run Text="Mainboard CAN"/>
                     </TextBlock>
                 </Grid>
-                <Grid x:Name="HDview" HorizontalAlignment="Left" Height="154" Margin="478,43,0,0" VerticalAlignment="Top" Width="187">
+                <Grid x:Name="HDview" HorizontalAlignment="Left" Height="154" Margin="560,39,0,0" VerticalAlignment="Top" Width="187">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition Height="37"/>
