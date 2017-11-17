@@ -58,7 +58,7 @@ namespace Injectoclean.Tools.BLE
         public static async Task SetupTester(ComunicationManager comunication,String program, ILockScreen dialog)
         {
             if (dialog != null)
-                dialog.Show("Reiniciando Dispocitivo...");
+                dialog.Show("Reiniciando Dispositivo...");
             if (!comunication.IsReady())
                 ComunicationManager.PutTaskDelay(1000);
             comunication.SendCommand(Key.Reset);
@@ -113,7 +113,7 @@ namespace Injectoclean.Tools.BLE
         public static async Task SetupTest(ComunicationManager comunication, String program, ILockScreen dialog)
         {
             if (dialog != null)
-                dialog.Show("Reiniciando Dispocitivo...");
+                dialog.Show("Reiniciando Dispositivo...");
             if (!comunication.IsReady())
                 ComunicationManager.PutTaskDelay(1000);
             comunication.SendCommand(Key.Reset);
