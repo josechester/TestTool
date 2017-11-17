@@ -75,7 +75,7 @@ namespace Injectoclean
             rootPage.Log.LogMessageNotification("");
             if (!tester.IsConnected() || !Device.IsConnected())
             {
-                rootPage.Log.LogMessageError("Porfavor primero conectese al dispocitivo y valide la conexion al tester");
+                rootPage.Log.LogMessageError("Porfavor primero conectese al dispositivo y valide la conexion al tester");
                 return;
             }
             if (ComboBoxFile.SelectedIndex == -1)
@@ -179,7 +179,7 @@ namespace Injectoclean
             rootPage.Log.LogMessageNotification("");
             if (!Device.IsConnected())
             {
-                rootPage.Log.LogMessageError("Porfavor primero conectese al dispocitivo");
+                rootPage.Log.LogMessageError("Porfavor primero conectese al dispoitivo");
                 return;
             }
             switch (ComboBoxFile.SelectedIndex)

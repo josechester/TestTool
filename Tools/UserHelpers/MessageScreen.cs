@@ -1,4 +1,5 @@
-﻿using Injectoclean.Tools.BLE;
+﻿using System;
+using Injectoclean.Tools.BLE;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 
@@ -12,12 +13,21 @@ namespace Injectoclean.Tools.UserHelpers
             dialog.Hide();
         }
 
-        public void setTitle(string title)
+        public async void setTitle(string title)
         {
-            this.Show(title);
+            if (dialog != null)
+                dialog.Hide();
+            dialog = new ContentDialog();
+            dialog.Title = title;
+            ProgressRing ring = new ProgressRing();
+            ring.IsActive = true;
+            dialog.Content = ring;
+            dialog.ShowAsync();
+            await Task.Delay(300);
+
         }
 
-        public void SetwithButton(string title, string content, string CloseButtonName)
+        public async void SetwithButton(string title, string content, string CloseButtonName)
         {
             if (dialog != null)
                 dialog.Hide();
@@ -25,11 +35,11 @@ namespace Injectoclean.Tools.UserHelpers
             dialog.Title = title;
             dialog.Content = content;
             dialog.CloseButtonText = CloseButtonName;
-            dialog.ShowAsync();
+            await dialog.ShowAsync();
 
         }
 
-        public void Show(string title)
+        public async void Show(string title)
         {
             if(dialog!=null)
                 dialog.Hide();
@@ -39,6 +49,7 @@ namespace Injectoclean.Tools.UserHelpers
             ring.IsActive = true;
             dialog.Content = ring;
             dialog.ShowAsync();
+            await Task.Delay(300);
         }
        
         public MessageScreen()
@@ -52,7 +63,7 @@ namespace Injectoclean.Tools.UserHelpers
             dialog = new ContentDialog();
             dialog.Title = title;
             dialog.Content = content;
-            dialog.ShowAsync();
+             dialog.ShowAsync();
             await Task.Delay(timeout);
             this.Close();
         }
