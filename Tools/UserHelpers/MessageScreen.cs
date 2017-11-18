@@ -13,7 +13,7 @@ namespace Injectoclean.Tools.UserHelpers
             dialog.Hide();
         }
 
-        public async void setTitle(string title)
+        public async Task setTitle(string title)
         {
             if (dialog != null)
                 dialog.Hide();
@@ -22,12 +22,14 @@ namespace Injectoclean.Tools.UserHelpers
             ProgressRing ring = new ProgressRing();
             ring.IsActive = true;
             dialog.Content = ring;
-            dialog.ShowAsync();
-            await Task.Delay(300);
+             dialog.ShowAsync();
+            await Task.Delay(1000);
+
+
 
         }
 
-        public async void SetwithButton(string title, string content, string CloseButtonName)
+        public async Task SetwithButton(string title, string content, string CloseButtonName)
         {
             if (dialog != null)
                 dialog.Hide();
@@ -35,11 +37,11 @@ namespace Injectoclean.Tools.UserHelpers
             dialog.Title = title;
             dialog.Content = content;
             dialog.CloseButtonText = CloseButtonName;
-            await dialog.ShowAsync();
-
+            dialog.ShowAsync();
+            await Task.Delay(1000);
         }
 
-        public async void Show(string title)
+        public async Task Show(string title)
         {
             if(dialog!=null)
                 dialog.Hide();
@@ -49,7 +51,7 @@ namespace Injectoclean.Tools.UserHelpers
             ring.IsActive = true;
             dialog.Content = ring;
             dialog.ShowAsync();
-            await Task.Delay(300);
+            await Task.Delay(1000);
         }
        
         public MessageScreen()

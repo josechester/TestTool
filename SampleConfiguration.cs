@@ -18,7 +18,7 @@ namespace Injectoclean
         };
 
         public Log Log = new Log();
-        public MessageScreen messageScreen = new MessageScreen();
+        public MessageScreen messageScreen => new MessageScreen();
 
         public class Scenario
         {

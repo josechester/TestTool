@@ -19,35 +19,36 @@ namespace Injectoclean.Tools.BLE
         public static async Task ExecuteSetup(ComunicationManager comunication, String program, ILockScreen dialog)
         {
             if (dialog != null)
-                dialog.Show("Reiniciando dispositivo...");
+                await dialog.Show("Reiniciando dispositivo...");
             if (!comunication.IsReady())
                 ComunicationManager.PutTaskDelay(1000);
+            
+            if (dialog != null)
+                await dialog.setTitle("Accesando a Remote Shell...");
             comunication.SendCommand(Key.Reset);
             await Task.Delay(1000);
-            if (dialog != null)
-                dialog.setTitle("Accesando a Remote Shell...");
             if (!Shell.RemoteShellAccess(comunication, limit))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo accesar a remote shell", "Porfavor utilize un dispositivo actualizado.", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo accesar a remote shell", "Porfavor utilize un dispositivo actualizado.", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Accesando a Archivos");
+                await dialog.setTitle("Accesando a Archivos");
 
             if (!Shell.CdToFiles(comunication, limit))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: Acceso a archivos no obtenido", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: Acceso a archivos no obtenido", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("ejecutando Programa");
+                await dialog.setTitle("ejecutando Programa");
 
             if (!Shell.ExecuteFile(comunication, limit, program))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo ejecutar programa" + program, "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo ejecutar programa" + program, "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
             }
             else
             {
@@ -58,50 +59,50 @@ namespace Injectoclean.Tools.BLE
         public static async Task SetupTester(ComunicationManager comunication,String program, ILockScreen dialog)
         {
             if (dialog != null)
-                dialog.Show("Reiniciando Dispositivo...");
+                await dialog.Show("Reiniciando Dispositivo...");
             if (!comunication.IsReady())
                 ComunicationManager.PutTaskDelay(1000);
+            if (dialog != null)
+                await dialog.setTitle("Accesando a Remote Shell...");
             comunication.SendCommand(Key.Reset);
             await Task.Delay(1000);
-            if (dialog != null)
-                dialog.setTitle("Accesando a Remote Shell...");
             if (!Shell.RemoteShellAccess(comunication, limit))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error:", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error:", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Accesando a Archivos");
+                await dialog.setTitle("Accesando a Archivos");
 
             if (!Shell.CdToFiles(comunication, limit))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: Acceso a archivos no obtenido", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: Acceso a archivos no obtenido", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Copiando "+program );
+                await dialog.setTitle("Copiando "+program );
             if (!Shell.CopyPCToFlash(comunication, program, "\\Assets\\Data\\"))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
                 return;
             }
-            dialog.setTitle("Copiando"+Programs.Tester);
+            await dialog.setTitle("Copiando "+Programs.Tester);
             if (!Shell.CopyPCToFlash(comunication, Programs.Tester, "\\Assets\\Data\\"))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Ejecutando programa para prueba");
+                await dialog.setTitle("Ejecutando programa para prueba");
 
             if (!Shell.ExecuteFile(comunication, limit, Programs.Tester))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo ejecutar programa "+Programs.Tester, "Porfavor contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo ejecutar programa "+Programs.Tester, "Porfavor contacte a soporte tecnico", "Aceptar");
             }
             else
             {
@@ -113,40 +114,39 @@ namespace Injectoclean.Tools.BLE
         public static async Task SetupTest(ComunicationManager comunication, String program, ILockScreen dialog)
         {
             if (dialog != null)
-                dialog.Show("Reiniciando Dispositivo...");
+                await dialog.Show("Reiniciando Dispositivo...");
             if (!comunication.IsReady())
                 ComunicationManager.PutTaskDelay(1000);
+            if (dialog != null)
+                await dialog.setTitle("Accesando a Remote Shell...");
             comunication.SendCommand(Key.Reset);
             await Task.Delay(1000);
-            if (dialog != null)
-                dialog.setTitle("Accesando a Remote Shell...");
             if (!Shell.RemoteShellAccess(comunication, limit))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error:", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error:", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Accesando a Archivos");
-
+                await dialog.setTitle("Accesando a Archivos");
             if (!Shell.CdToFiles(comunication, limit))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: Acceso a archivos no obtenido", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: Acceso a archivos no obtenido", "Porfavor utiliza un dispositivo actualizado, si su dispositivo lo esta contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (dialog != null)
-                dialog.setTitle("Copiando" + program);
+                await dialog.setTitle("Copiando " + program);
             if (!Shell.CopyPCToFlash(comunication, program, "\\Assets\\Data\\"))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
                 return;
             }
             if (!Shell.ExecuteFile(comunication, limit, program))
             {
                 if (dialog != null)
-                    dialog.SetwithButton("Error: No se pudo ejecutar programa " + program, "Porfavor contacte a soporte tecnico", "Aceptar");
+                    await dialog.SetwithButton("Error: No se pudo ejecutar programa " + program, "Porfavor contacte a soporte tecnico", "Aceptar");
             }
             else
             {

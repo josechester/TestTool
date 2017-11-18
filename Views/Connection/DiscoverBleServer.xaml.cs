@@ -92,7 +92,7 @@ namespace Injectoclean
             //shell.Visibility = Visibility.Visible; 
             getmessages();
             //setmbcolor(green); //freeze
-            rootPage.messageScreen.set("Atencion:", "Porfavor mida el voltaje", 2000);
+            await rootPage.messageScreen.set("Atencion:", "Porfavor mida el voltaje", 2000);
         }
         private async void getmessages()
         {
