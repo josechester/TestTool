@@ -229,6 +229,7 @@
   <ItemGroup>
     <Folder Include="System\Windows\" />
     <Folder Include="Themes\" />
+    <Folder Include="Tools\SerialPort\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

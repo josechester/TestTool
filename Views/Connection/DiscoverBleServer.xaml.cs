@@ -89,16 +89,18 @@ namespace Injectoclean
             await SetupCJ4.SetupTest(Device.Comunication, Programs.Tester, rootPage.messageScreen);
             //run TestD.CJ4 on tester and get responses
             await SetupCJ4.SetupTest(tester.Comunication, Programs.Test, rootPage.messageScreen);
-            //shell.Visibility = Visibility.Visible; 
+            //shell.Visibility = Visibility.Visible;
+            //await rootPage.messageScreen.setTitle("Recopilando Datos");
             getmessages();
+
             //setmbcolor(green); //freeze
-            await rootPage.messageScreen.set("Atencion:", "Porfavor mida el voltaje", 2000);
+            shell.Visibility = Visibility.Visible;
+            await rootPage.messageScreen.SetwithButton("Atencion:", "Porfavor mida el voltaje", "Aceptar");
         }
         private async void getmessages()
         {
-            for (int i = 0; i < 100; i++)
-            {
-                Byte[][] responses = tester.Comunication.GetResponses(100, 1);
+           
+                Byte[][] responses = tester.Comunication.GetResponses(1500,5000);
                 if (responses != null)
                 {
                     for (int j = 0; j < responses.Length; j++)
@@ -116,11 +118,12 @@ namespace Injectoclean
                         }
                     }     
                 }
-            }
+
         }
         void checkHD(Byte[] mess)
         {
-            if (mess[1] != 'j' || mess.Length<6)
+
+            if (mess.Length < 6 || mess[1] != 'j'  )
                 return;
             if (HDJ17.Fill == red)
             {

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3" IgnorableNamespaces="uap mp uap3">
   <Identity Name="BluetoothLEClient.CS" Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="a2214a83-6d31-41dd-b75f-0b8e56be182d" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>Bluetooth Low Energy Client C# Sample</DisplayName>
+    <DisplayName>CJ4-R-Tester</DisplayName>
     <PublisherDisplayName>InjectoClean</PublisherDisplayName>
     <Logo>Assets\StoreLogo-sdk.png</Logo>
   </Properties>
@@ -32,8 +32,14 @@
     </Application>
   </Applications>
   <Capabilities>
-    <Capability Name="internetClient" />
+    <uap3:Capability Name="remoteSystem" />
     <!--BT_Code: Always declare the bluetooth capability when using Bluetooth-->
     <DeviceCapability Name="bluetooth" />
+  
+  <DeviceCapability Name="serialcommunication">
+    <Device Id="any">
+      <Function Type="name:serialPort" />
+    </Device>
+  </DeviceCapability>
   </Capabilities>
 </Package>
