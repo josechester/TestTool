@@ -56,7 +56,7 @@ namespace Injectoclean.Tools.BLE
                 }
                 tries++;
             }
-            if (tries == limit + 1)
+            if (tries == limit)
                 return false;
             else
                 return true;

@@ -110,6 +110,13 @@
     <Content Include="Assets\Data\TestEq.cj4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Data\hd.cj4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Data\TestHD.cj4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Assets\TestHD.cj4" />
     <None Include="BluetoothLEClient_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>

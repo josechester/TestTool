@@ -1,6 +1,7 @@
 using Injectoclean.Tools.BLE;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
@@ -74,6 +75,8 @@ namespace Injectoclean
 
         private async void BRunTest_Click(object sender, RoutedEventArgs e)
         {
+            sethdcolor(red);
+            setmbcolor(red);
             rootPage.Log.LogMessageNotification("");
             if (!tester.IsConnected() || !Device.IsConnected())
             {
@@ -85,19 +88,25 @@ namespace Injectoclean
                 rootPage.Log.LogMessageError("Porfavor seleccione un tipo de configuracion");
                 return;
             }
-            //run on converted device
-            await SetupCJ4.SetupTest(Device.Comunication, Programs.Tester, rootPage.messageScreen);
-            //run TestD.CJ4 on tester and get responses
-            await SetupCJ4.SetupTest(tester.Comunication, Programs.Test, rootPage.messageScreen);
-            //shell.Visibility = Visibility.Visible;
+            switch (ComboBoxFile.SelectedIndex)
+            {
+                case 0:
+                    await SetupCJ4.SetupTest(Device.Comunication, Programs.TestHD, rootPage.messageScreen);
+                    await SetupCJ4.SetupTest(tester.Comunication, Programs.TesterHD, rootPage.messageScreen);
+             
+                    break;
+                case 1:
+                    await SetupCJ4.SetupTest(Device.Comunication, Programs.TestMB, rootPage.messageScreen);
+                    await SetupCJ4.SetupTest(tester.Comunication, Programs.TesterMB, rootPage.messageScreen);
+                   
+                    break;
+            }
+             getmessages();
             //await rootPage.messageScreen.setTitle("Recopilando Datos");
-            getmessages();
-
-            //setmbcolor(green); //freeze
-            shell.Visibility = Visibility.Visible;
+           
             await rootPage.messageScreen.SetwithButton("Atencion:", "Porfavor mida el voltaje", "Aceptar");
         }
-        private async void getmessages()
+        private void getmessages()
         {
            
                 Byte[][] responses = tester.Comunication.GetResponses(1500,5000);
@@ -110,9 +119,11 @@ namespace Injectoclean
                         switch (ComboBoxFile.SelectedIndex)
                         {
                             case 0:
+                               
                                 checkHD(responses[j]);
                                 break;
                             case 1:
+                              
                                 checkMB(responses[j]);
                                 break;
                         }
@@ -205,6 +216,26 @@ namespace Injectoclean
             
         }
 
+        private async void BDetectProtocols_Click(object sender, RoutedEventArgs e)
+        {
+            sethdcolor(red);
+            setmbcolor(red);
+            rootPage.Log.LogMessageNotification("");
+            if (!tester.IsConnected() || !Device.IsConnected())
+            {
+                rootPage.Log.LogMessageError("Porfavor primero conectese al dispositivo y valide la conexion al tester");
+                return;
+            }
+            if (ComboBoxFile.SelectedIndex == -1)
+            {
+                rootPage.Log.LogMessageError("Porfavor seleccione un tipo de configuracion");
+                return;
+            }
+            getmessages();
+            //await rootPage.messageScreen.setTitle("Recopilando Datos");
+
+            await rootPage.messageScreen.SetwithButton("Atencion:", "Porfavor mida el voltaje", "Aceptar");
+        }
 
         private void BCheckConnection_Click(object sender, RoutedEventArgs e)
         {
