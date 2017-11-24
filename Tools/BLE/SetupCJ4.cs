@@ -88,7 +88,7 @@ namespace Injectoclean.Tools.BLE
                     dialog.SetwithButton("Error: No se pudo copiar programa", "Porfavor contacte a soporte tecnico", "Aceptar");
                 return;
             }
-            dialog.setTitle("Copiando"+Programs.Tester);
+            dialog.setTitle("Copiando "+Programs.Tester);
             if (!Shell.CopyPCToFlash(comunication, Programs.Tester, "\\Assets\\Data\\"))
             {
                 if (dialog != null)
