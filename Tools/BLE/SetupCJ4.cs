@@ -55,7 +55,10 @@ namespace Injectoclean.Tools.BLE
             else
             {
                 if (dialog != null)
-                   await dialog.set("Exito", "Programa " + program + " esta ejecutandose", 1500);
+                {
+                    await dialog.set("Exito", "Programa " + program + " esta ejecutandose", 1500);
+                    await Task.Delay(300);
+                }
             }
         }
        
@@ -100,7 +103,10 @@ namespace Injectoclean.Tools.BLE
                 }
             }
             if (dialog != null)
+            {
                 await dialog.set("Exito", "Programa " + program + " esta ejecutandose", 1500);
+                await Task.Delay(300);
+            }
             
         }
     }

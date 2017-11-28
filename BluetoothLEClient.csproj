@@ -20,8 +20,9 @@
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Auto</AppxBundle>
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
-    <PackageCertificateThumbprint>E9ABCACB828AE5974074F92CD7D9593E8698BABE</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>5D2DB6B799CA00ECADDF3E8EEB8111E5C2F25457</PackageCertificateThumbprint>
     <PackageCertificateKeyFile>BluetoothLEClient_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxPackageDir>C:\Users\jose_\Documents\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -116,7 +117,6 @@
     <Content Include="Assets\Data\TestHD.cj4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Assets\TestHD.cj4" />
     <None Include="BluetoothLEClient_TemporaryKey.pfx" />
     <None Include="project.json" />
   </ItemGroup>

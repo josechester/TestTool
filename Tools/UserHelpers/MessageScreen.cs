@@ -10,7 +10,11 @@ namespace Injectoclean.Tools.UserHelpers
         private ContentDialog dialog;
         public void Close()
         {
-            dialog.Hide();
+            if (dialog != null)
+            {
+                dialog.Hide();
+                dialog = null;
+            }
         }
 
         public async Task setTitle(string title)

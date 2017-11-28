@@ -33,6 +33,8 @@ namespace Injectoclean
             HDJ17.Fill = brush;
             HDJ19.Fill = brush;
         }
+      
+
         private void reset()
         {
             sethdcolor(red);
@@ -101,15 +103,12 @@ namespace Injectoclean
                    
                     break;
             }
-             getmessages();
-            //await rootPage.messageScreen.setTitle("Recopilando Datos");
-           
-            await rootPage.messageScreen.SetwithButton("Atencion:", "Porfavor mida el voltaje", "Aceptar");
+             getmessages();        
         }
-        private void getmessages()
+        private async void getmessages()
         {
-           
-                Byte[][] responses = tester.Comunication.GetResponses(1500,5000);
+            await rootPage.messageScreen.set("Prueba en proceso","Recopilando Informacion",2500);
+            Byte[][] responses = tester.Comunication.GetResponses(2500,5000);
                 if (responses != null)
                 {
                     for (int j = 0; j < responses.Length; j++)
@@ -129,7 +128,15 @@ namespace Injectoclean
                         }
                     }     
                 }
-
+            String status = CheckStatus();
+            if (status == "")
+            {
+                await rootPage.messageScreen.set("Prueba Terminada", "Protocolos soportados", 2000);
+                await Task.Delay(300);
+                await rootPage.messageScreen.SetwithButton("Atencion:", "Porfavor mida el voltaje", "Aceptar");
+            }
+            else
+                await rootPage.messageScreen.set("Prueba Terminada", status, 2000);
         }
         void checkHD(Byte[] mess)
         {
@@ -177,6 +184,35 @@ namespace Injectoclean
             }
             return;
         }
+        private String CheckStatus()
+        {
+            String status = "";
+            switch (ComboBoxFile.SelectedIndex)
+            {
+                case 0:
+                    if (HDJ17.Fill != green)
+                        status += "J1703";
+                    if (HDJ19.Fill != green)
+                        status += ", J1939";
+                    break;
+                case 1:
+                    if (MBP7.Fill != green)
+                        status += "ISO Pin 7";
+                    if (MBP10.Fill != green)
+                        status += ", ISO Pin 10";
+                    if (MBP13.Fill != green)
+                        status += ", ISO Pin 13";
+                    if (MBm7.Fill != green)
+                        status += ", MainBoard Pin 7";
+                    if (MBCAN.Fill != green)
+                        status += ", MainBoardCan";
+                    break;
+            }
+            if (status == "")
+                return "";
+            else
+                return "Protocolos " + status + " no pasaron las pruebas";
+        }
         private void Bconect_Device_Click(object sender, RoutedEventArgs e)
         {
             reset();
@@ -191,7 +227,7 @@ namespace Injectoclean
             shell.Text += line + String.Format(Environment.NewLine);
         }
 
-        private void BconfigDevice_Click(object sender, RoutedEventArgs e)
+        private async void BconfigDevice_Click(object sender, RoutedEventArgs e)
         {
             rootPage.Log.LogMessageNotification("");
             if (!Device.IsConnected())
@@ -205,18 +241,26 @@ namespace Injectoclean
                     rootPage.NotifyUser("Porfavor seleccione un tipo de configuracion", NotifyType.ErrorMessage);
                     break;
                 case 0:
-                    SetupCJ4.SetupTest(Device.Comunication, Programs.HD, rootPage.messageScreen);
+                    await SetupCJ4.SetupTest(Device.Comunication, Programs.HD, rootPage.messageScreen);
                     BRunTest.IsEnabled = true;
                     break;
                 case 1:
-                    SetupCJ4.SetupTest(Device.Comunication, Programs.MB, rootPage.messageScreen);
+                    await SetupCJ4.SetupTest(Device.Comunication, Programs.MB, rootPage.messageScreen);
                     BRunTest.IsEnabled = true;
                     break;
             }
+            //no checar respuesta y solo recomendar checar visualmente
+            /*Byte[] mess = Device.Comunication.GetLastResponse();
+            String s = "";
+            if (mess != null)
+                s = tester.Comunication.GetstringFromBytes(mess);
+            else
+                s = "No mensaje retornado";/*/
+            await rootPage.messageScreen.set("Configuracion Finalizada","Porfavor verifique el resultado en la pantalla del dispositivo", 2600); 
             
         }
 
-        private async void BDetectProtocols_Click(object sender, RoutedEventArgs e)
+        private void BDetectProtocols_Click(object sender, RoutedEventArgs e)
         {
             sethdcolor(red);
             setmbcolor(red);
@@ -232,9 +276,6 @@ namespace Injectoclean
                 return;
             }
             getmessages();
-            //await rootPage.messageScreen.setTitle("Recopilando Datos");
-
-            await rootPage.messageScreen.SetwithButton("Atencion:", "Porfavor mida el voltaje", "Aceptar");
         }
 
         private void BCheckConnection_Click(object sender, RoutedEventArgs e)

@@ -57,7 +57,12 @@ namespace Injectoclean.Tools.BLE
             return response.Last();
         }
 
-
+        public Byte[] GetLastResponse()
+        {
+            if (response.Count == 0)
+                return null;
+            return response.Last();
+        }
         public Byte[] GetLastResponse(int timeout,int nresponses)
         {
             base.response.Clear();
@@ -70,6 +75,13 @@ namespace Injectoclean.Tools.BLE
         {
             base.response.Clear();
             waiter(timeout, nresponses);
+            if (response.Count == 0)
+                return null;
+            return response.ToArray();
+        }
+        public Byte[][] GetResponses()
+        {
+            
             if (response.Count == 0)
                 return null;
             return response.ToArray();
